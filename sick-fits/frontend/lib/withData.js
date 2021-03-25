@@ -8,6 +8,7 @@ import { endpoint, prodEndpoint } from '../config';
 function createClient({ headers, initialState }) {
   return new ApolloClient({
     link: ApolloLink.from([
+      // this is an error handling Link for graphql errors
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors)
           graphQLErrors.forEach(({ message, locations, path }) =>
@@ -15,6 +16,7 @@ function createClient({ headers, initialState }) {
               `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
             )
           );
+        // is there a backend network error? CORS? is it even running?
         if (networkError)
           console.log(
             `[Network error]: ${networkError}. Backend is unreachable. Is it running?`

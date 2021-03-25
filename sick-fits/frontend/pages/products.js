@@ -1,5 +1,11 @@
-export default function ProductsPage() {
-    return <div>
-        <p>Products!</p>
-    </div>
+import Products from '../components/Products'
+
+const ProductsPage = () => {
+    return (
+        <div>
+            <Products />
+        </div>
+    )
 }
+
+export default ProductsPage;
